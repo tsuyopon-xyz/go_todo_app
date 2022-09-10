@@ -4,20 +4,33 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
+	"os"
 
 	"golang.org/x/sync/errgroup"
 )
 
 func main() {
-	if err := run(context.Background()); err != nil {
+	if len(os.Args) != 2 {
+		log.Println("need port number")
+		os.Exit(1)
+	}
+	port := os.Args[1]
+
+	l, err := net.Listen("tcp", fmt.Sprintf("localhost:%s", port))
+	if err != nil {
+		log.Fatalf("failed to listen: %v\n", err)
+	}
+	fmt.Printf("listen port : http://%s\n", l.Addr().String())
+
+	if err := run(context.Background(), l); err != nil {
 		log.Printf("failed to terminate server: %v", err)
 	}
 }
 
-func run(ctx context.Context) error {
+func run(ctx context.Context, l net.Listener) error {
 	s := &http.Server{
-		Addr: ":18080",
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 		}),
@@ -26,7 +39,7 @@ func run(ctx context.Context) error {
 	eg, ctx := errgroup.WithContext(ctx)
 
 	eg.Go(func() error {
-		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		if err := s.Serve(l); err != nil && err != http.ErrServerClosed {
 			log.Printf("failed to close: %+v", err)
 			return err
 		}
