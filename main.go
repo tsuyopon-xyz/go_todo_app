@@ -18,7 +18,7 @@ func main() {
 	}
 	port := os.Args[1]
 
-	l, err := net.Listen("tcp", fmt.Sprintf("localhost:%s", port))
+	l, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v\n", err)
 	}
