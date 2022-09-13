@@ -9,6 +9,9 @@ build: ## Build docker image to deploy
 build-local: ## Build docker image to local development
 	docker compose build --no-cache
 
+run-local: ## Run docker image for deploy locally
+	docker run --rm -p 28000:80 tsuyopon-xyz/gotodo:latest
+
 up: ## Do docker compose up with hot reload
 	docker compose up -d
 
