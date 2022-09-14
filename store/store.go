@@ -2,7 +2,6 @@ package store
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/tsuyopon-xyz/go_todo_app/entity"
 )
@@ -27,12 +26,11 @@ func (ts *TaskStore) Add(t *entity.Task) (entity.TaskID, error) {
 }
 
 func (ts *TaskStore) All() entity.Tasks {
-	// tasks := make([]*entity.Task, len(ts.Tasks))
-	tasks := []*entity.Task{}
+	tasks := make([]*entity.Task, len(ts.Tasks))
+	// tasks := []*entity.Task{}
 	for i, t := range ts.Tasks {
 		tasks[i-1] = t
 	}
-	fmt.Printf("tasks : %+v", tasks)
 
 	return tasks
 }
