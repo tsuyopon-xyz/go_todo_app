@@ -6,7 +6,12 @@ require golang.org/x/sync v0.0.0-20220907140024-f12130a52804
 
 require github.com/caarlos0/env/v6 v6.10.0
 
-require github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect
+require (
+	github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect
+	golang.org/x/mod v0.6.0-dev.0.20220106191415-9b9b3d81d5e3 // indirect
+	golang.org/x/tools v0.1.10 // indirect
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+)
 
 require (
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
@@ -17,7 +22,8 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
+	github.com/matryer/moq v0.2.7
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
-	golang.org/x/sys v0.0.0-20210806184541-e5e7981a1069 // indirect
+	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
