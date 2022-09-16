@@ -19,6 +19,10 @@ const (
 	UserNameKey = "user_name"
 )
 
+// Do not add *.pem files to .gitignore
+// because this project is just a project
+// for study purpose
+
 //go:embed cert/secret.pem
 var rawPrivKey []byte
 

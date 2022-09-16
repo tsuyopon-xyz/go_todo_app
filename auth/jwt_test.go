@@ -11,7 +11,6 @@ import (
 )
 
 func TestEmbed(t *testing.T) {
-	t.Skip("Skip TestEmbed")
 	want := []byte("-----BEGIN PUBLIC KEY-----")
 	if !bytes.Contains(rawPubKey, want) {
 		t.Errorf("want %s, but got %s", want, rawPubKey)
