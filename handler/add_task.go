@@ -31,11 +31,6 @@ func (at *AddTask) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// t := &entity.Task{
-	// 	Title:  b.Title,
-	// 	Status: entity.TaskStatusTodo,
-	// }
-	// err := at.Repo.AddTask(ctx, at.DB, t)
 	t, err := at.Service.AddTask(ctx, b.Title)
 	if err != nil {
 		RespondJSON(ctx, w, &ErrResponse{
